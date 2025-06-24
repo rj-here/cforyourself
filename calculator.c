@@ -11,6 +11,7 @@ int add(int num1, int num2);
 int subtract(int num1, int num2);
 int multiply(int num1, int num2);
 int divide(int num1, int num2);
+int exponents(int base, int power);
 
 int main() {
 printf("Welcome! This will be a simple calculator.\n");
@@ -22,6 +23,7 @@ printf("1. Addition\n");
 printf("2. Subtraction\n");
 printf("3. Multiplication\n");
 printf("4. Division\n");
+printf("5. Exponents\n");
 
 int choice;
 scanf("%d", &choice); //scanf takes user input.
@@ -78,10 +80,21 @@ int dividedAnswer = divide(num1, num2);
 printf("Upon dividing the 2 numbers, the answer is: %d\n", dividedAnswer);
 }
 
+else if (choice == 5) {//for exponents.
+printf("Exponents here we come! Input 2 numbers, first the base, followed by the power. Keep one space between them.\n");
+
+int base, power;
+
+scanf("%d %d", &base, &power);
+
+int poweredBase = exponents(base, power);
+
+printf("%d to the power of %d is: %d", base, power, poweredBase);
+}
 }
 
 /*
-The coming functions will perform: addition, subtraction, mutliplication, division.
+The coming functions will perform: addition, subtraction, mutliplication, division. Additionally, the exponents function is for getting powers of numbers of any value!
 We will take 2 numbers in each case, then return the according result.
 The call to these functions are dependent on user selection.
 */
@@ -109,8 +122,15 @@ int answer = num1 / num2; //dividing
 return answer;
 }
 
+int exponents(int base, int power) {
+int value = 1;
+for (int i = 0; i < power; i++) {
+    value = value * base;
+}
+return value;
+}
 /*
 © 2025 Rishi
-Last updated: 23rd June, 2025
+Last updated: 24th June, 2025
 */
 
