@@ -6,12 +6,14 @@ This idea came to me as an AI suggestion.
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
+//Declaring the methods, so they can be used later!
 int add(int num1, int num2);
 int subtract(int num1, int num2);
 int multiply(int num1, int num2);
 int divide(int num1, int num2);
 int exponents(int base, int power);
+int log (int num);
+void fractions(int numerator1, int denominator1, int numerator2, int denominator2, int func);
 
 int main() {
 printf("Welcome! This will be a simple calculator.\n");
@@ -24,6 +26,7 @@ printf("2. Subtraction\n");
 printf("3. Multiplication\n");
 printf("4. Division\n");
 printf("5. Exponents\n");
+printf("6. Log [Base 10]\n");
 
 int choice;
 scanf("%d", &choice); //scanf takes user input.
@@ -91,10 +94,21 @@ int poweredBase = exponents(base, power);
 
 printf("%d to the power of %d is: %d", base, power, poweredBase);
 }
+
+else if (choice == 6) {
+printf("Log base 10! Which number would you like to get the log base 10 value of?\n");
+
+int num;
+
+scanf("%d", &num);
+
+printf("%d in log base 10 is: %d\n", num, log(num));
+}
+
 }
 
 /*
-The coming functions will perform: addition, subtraction, mutliplication, division. Additionally, the exponents function is for getting powers of numbers of any value!
+The coming functions will perform: addition, subtraction, mutliplication, division [the essentials]
 We will take 2 numbers in each case, then return the according result.
 The call to these functions are dependent on user selection.
 */
@@ -121,16 +135,37 @@ if (num2 == 0) {
 int answer = num1 / num2; //dividing
 return answer;
 }
-
+/*
+Extras
+*/
 int exponents(int base, int power) {
 int value = 1;
 for (int i = 0; i < power; i++) {
     value = value * base;
 }
-return value;
+return value; //get x^n
+}
+
+int log(int num) {
+return log10(num); //get log of base 10 values
+}
+
+void fractions(int numerator1, int denominator1, int numerator2, int denominator2, int func) {
+//involving fractions
+int numerator, denominator; //declaring final
+if (func == 1) { //add
+if (denominator1 == denominator2) { //if same denominator
+    numerator = numerator1 + numerator2;
+    printf("The fraction is: %d / %d", numerator, denominator1);
+}
+else {
+    numerator = (numerator1 * denominator2) + (numerator2 * denominator1);
+    denominator = denominator1 * denominator2;
+}
+}
 }
 /*
 © 2025 Rishi
-Last updated: 24th June, 2025
+Last updated: 30th June, 2025
 */
 
