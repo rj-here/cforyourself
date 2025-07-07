@@ -163,9 +163,33 @@ else {
     denominator = denominator1 * denominator2;
 }
 }
+
+else if (func == 2) { //subtract
+    numerator = numerator1 * denominator2 - numerator2 * denominator1; //final numerator
+    denominator = denominator1 * denominator2; //final denominator
+    printf("The fraction is %d / %d", numerator, denominator);
+}
+
+else if (func == 3) { //multiply
+if (denominator1 == numerator2) { //if denominator of first is numerator of second
+    numerator = numerator1; //final numerator
+    denominator = denominator2; //final denominator
+    printf("The fraction is %d / %d", numerator, denominator);
+}
+else if (denominator2 == numerator1) { //if denominator of second is numerator of first
+    numerator = numerator2; //final numerator
+    denominator = denominator1; //final denominator
+    printf("The fraction is $d / %d", numerator, denominator);
+}
+else {
+    numerator = numerator1 * numerator2; //final numerator
+    denominator = denominator1 * denominator2; //final denominator
+    printf("The fraction is %d / %d", numerator, denominator);
+}
+}
 }
 /*
 © 2025 Rishi
-Last updated: 30th June, 2025
+Last updated: 7th July, 2025
 */
 
