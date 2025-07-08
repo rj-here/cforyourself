@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/rj/Desktop/Career/GitHub/cforyourself/calculator'
+relocations:     []
+...

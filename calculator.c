@@ -12,7 +12,7 @@ int subtract(int num1, int num2);
 int multiply(int num1, int num2);
 int divide(int num1, int num2);
 int exponents(int base, int power);
-int log (int num);
+//double log (int num);
 void fractions(int numerator1, int denominator1, int numerator2, int denominator2, int func);
 
 int main() {
@@ -27,6 +27,7 @@ printf("3. Multiplication\n");
 printf("4. Division\n");
 printf("5. Exponents\n");
 printf("6. Log [Base 10]\n");
+printf("7. Fractions\n");
 
 int choice;
 scanf("%d", &choice); //scanf takes user input.
@@ -105,6 +106,9 @@ scanf("%d", &num);
 printf("%d in log base 10 is: %d\n", num, log(num));
 }
 
+else if (choice == 7) {//for fractions
+printf("Fractions! Provide 2 fractions as input, in this format: the numerator of the first, followed by the denominator of the first, then the numerator of the second, followed by the denominator of the second. Keep a space between each of them.\n");
+
 }
 
 /*
@@ -146,7 +150,7 @@ for (int i = 0; i < power; i++) {
 return value; //get x^n
 }
 
-int log(int num) {
+double log(int num) {
 return log10(num); //get log of base 10 values
 }
 
@@ -190,6 +194,6 @@ else {
 }
 /*
 © 2025 Rishi
-Last updated: 7th July, 2025
+Last updated: 8th July, 2025
 */
 
