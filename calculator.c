@@ -13,7 +13,7 @@ int multiply(int num1, int num2);
 int divide(int num1, int num2);
 int exponents(int base, int power);
 //double log (int num);
-void fractions(int numerator1, int denominator1, int numerator2, int denominator2, int func);
+//void fractions(int numerator1, int denominator1, int numerator2, int denominator2, int func);
 
 int main() {
 printf("Welcome! This will be a simple calculator.\n");
@@ -110,6 +110,7 @@ else if (choice == 7) {//for fractions
 printf("Fractions! Provide 2 fractions as input, in this format: the numerator of the first, followed by the denominator of the first, then the numerator of the second, followed by the denominator of the second. Keep a space between each of them.\n");
 
 }
+}
 
 /*
 The coming functions will perform: addition, subtraction, mutliplication, division [the essentials]
@@ -149,7 +150,7 @@ for (int i = 0; i < power; i++) {
 }
 return value; //get x^n
 }
-
+/*
 double log(int num) {
 return log10(num); //get log of base 10 values
 }
@@ -191,9 +192,15 @@ else {
     printf("The fraction is %d / %d", numerator, denominator);
 }
 }
+
+else if (func == 4) { //divide
+
 }
+
+}
+*/
 /*
 © 2025 Rishi
-Last updated: 8th July, 2025
+Last updated: 9th July, 2025
 */
 
