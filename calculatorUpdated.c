@@ -1,8 +1,6 @@
 /*
 This program will be a simple calculator, performing basic operations. I intend to add history as well, and also implementing multi-calculation (such as adding several numbers to understand finances or grades).
 This idea came to me as an AI suggestion.
-
-I have since moved subsequent code to calculatorUpdated.c, to add other functions, and allow this simple and functional version to remain.
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,7 +12,6 @@ int subtract(int num1, int num2);
 int multiply(int num1, int num2);
 int divide(int num1, int num2);
 int exponents(int base, int power);
-
 
 int main() {
 printf("Welcome! This will be a simple calculator.\n");
@@ -151,7 +148,55 @@ for (int i = 0; i < power; i++) {
 }
 return value; //get x^n
 }
+/*
+double log(int num) {
+return log10(num); //get log of base 10 values
+}
 
+void fractions(int numerator1, int denominator1, int numerator2, int denominator2, int func) {
+//involving fractions
+int numerator, denominator; //declaring final
+if (func == 1) { //add
+if (denominator1 == denominator2) { //if same denominator
+    numerator = numerator1 + numerator2;
+    printf("The fraction is: %d / %d", numerator, denominator1);
+}
+else {
+    numerator = (numerator1 * denominator2) + (numerator2 * denominator1);
+    denominator = denominator1 * denominator2;
+}
+}
+
+else if (func == 2) { //subtract
+    numerator = numerator1 * denominator2 - numerator2 * denominator1; //final numerator
+    denominator = denominator1 * denominator2; //final denominator
+    printf("The fraction is %d / %d", numerator, denominator);
+}
+
+else if (func == 3) { //multiply
+if (denominator1 == numerator2) { //if denominator of first is numerator of second
+    numerator = numerator1; //final numerator
+    denominator = denominator2; //final denominator
+    printf("The fraction is %d / %d", numerator, denominator);
+}
+else if (denominator2 == numerator1) { //if denominator of second is numerator of first
+    numerator = numerator2; //final numerator
+    denominator = denominator1; //final denominator
+    printf("The fraction is $d / %d", numerator, denominator);
+}
+else {
+    numerator = numerator1 * numerator2; //final numerator
+    denominator = denominator1 * denominator2; //final denominator
+    printf("The fraction is %d / %d", numerator, denominator);
+}
+}
+
+else if (func == 4) { //divide
+
+}
+
+}
+*/
 /*
 © 2025 Rishi
 Last updated: 10th July, 2025
