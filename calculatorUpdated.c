@@ -12,6 +12,8 @@ int subtract(int num1, int num2);
 int multiply(int num1, int num2);
 int divide(int num1, int num2);
 int exponents(int base, int power);
+double logOf10(int num);
+void fractions(int numerator1, int denominator1, int numerator2, int denominator2, int func);
 
 int main() {
 printf("Welcome! This will be a simple calculator.\n");
@@ -107,6 +109,20 @@ printf("%d in log base 10 is: %d\n", num, log(num));
 else if (choice == 7) {//for fractions
 printf("Fractions! Provide 2 fractions as input, in this format: the numerator of the first, followed by the denominator of the first, then the numerator of the second, followed by the denominator of the second. Keep a space between each of them.\n");
 
+int numerator1, denominator1, numerator2, denominator2;
+
+scanf("%d %d %d %d", &numerator1, &denominator1, &numerator2, &denominator2);
+
+printf("Which function would you like to perform on the fractions?\n 1. Add\n, 2. Subtract\n, 3. Multiply\n, 4. Divide\n");
+
+int func;
+scanf("%d", &func);
+if ((func >= 1) && (func <=4)) {
+    fractions(numerator1, denominator1, numerator2, denominator2, func);
+}
+else {
+    printf("Sorry! Need a valid function!\n Try again.\n");
+}
 }
 }
 
@@ -148,8 +164,8 @@ for (int i = 0; i < power; i++) {
 }
 return value; //get x^n
 }
-/*
-double log(int num) {
+
+double logOf10(int num) {
 return log10(num); //get log of base 10 values
 }
 
@@ -191,12 +207,18 @@ else {
 }
 }
 
-else if (func == 4) { //divide
-
+else if (func == 4) { //divide; dividing a fraction by another is multiplying by the reciprocal
+    numerator = numerator1 * denominator2; //final numerator
+    denominator = denominator1 * numerator2; //final denominator
+    if (denominator == 0) {
+        printf("Error: Division by zero is not allowed.\n");
+        return;
+    }
+    printf("The fraction is %d / %d", numerator, denominator);
 }
 
 }
-*/
+
 /*
 © 2025 Rishi
 Last updated: 10th July, 2025
