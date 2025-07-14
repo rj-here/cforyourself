@@ -113,7 +113,7 @@ int numerator1, denominator1, numerator2, denominator2;
 
 scanf("%d %d %d %d", &numerator1, &denominator1, &numerator2, &denominator2);
 
-printf("Which function would you like to perform on the fractions?\n 1. Add\n, 2. Subtract\n, 3. Multiply\n, 4. Divide\n");
+printf("Which function would you like to perform on the fractions?\n 1. Add,\n2. Subtract,\n3. Multiply,\n4. Divide,\n");
 
 int func;
 scanf("%d", &func);
