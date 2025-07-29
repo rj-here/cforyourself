@@ -6,6 +6,11 @@ This idea came to me as an AI suggestion.
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#define MAX_LEN 100; //The maximum length
+
+char hist[MAX_LEN][MAX_LEN]; // the most amount of expressions
+
+int histIndex = 0; // declaring the # of expressions done so far
 //Declaring the methods, so they can be used later!
 int add(int num1, int num2);
 int subtract(int num1, int num2);
@@ -231,6 +236,6 @@ for (int i = 0; i < hist.length(); i++) {
 
 /*
 © 2025 Rishi
-Last updated: 28th July, 2025
+Last updated: 29th July, 2025
 */
 
