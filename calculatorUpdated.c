@@ -11,7 +11,7 @@ int add(int num1, int num2);
 int subtract(int num1, int num2);
 int multiply(int num1, int num2);
 int divide(int num1, int num2);
-double exponents(int base, int power);
+double exponents(double base, double power);
 double logOf10(int num);
 void fractions(int numerator1, int denominator1, int numerator2, int denominator2, int func);
 
@@ -157,25 +157,8 @@ return answer;
 /*
 Extras
 */
-double exponents(int base, int power) {
-double value = 1;
-if (power > 1) {//for positive powers
-for (int i = 0; i < power; i++) {
-    value = value * base;
-}
-}
-else if (power > 0 && power < 1) {//for fractional powers
-double fractionalPower = pow(base, power);
-}
-else if (power < 0) { //for negative powers
-for (int i = 0; i > power; i--) {
-value = value/base; 
-}
-}
-else if (power == 0) {
-    return 1; //any n^0 is 1
-}
-return value; //get x^n
+double exponents(double base, double power) {
+return pow(base, power);
 }
 
 double logOf10(int num) {
@@ -231,22 +214,15 @@ else if (func == 4) { //divide; dividing a fraction by another is multiplying by
 }
 
 else if (func == 5) { //exponents
-    double numeratorOne = exponents(numerator1, numerator2); //first numerator
-    double denominatorOne = exponents(denominator1, numerator2); //first denominator
-    double fractionOne = numeratorOne / denominatorOne; //Fraction One result
-    //These One numbers, are powering the numerator and denominator of fraction 1 by the numerator of fraction 2
-    double numeratorTwo = exponents(numerator1, denominator2); //second numerator
-    double denominatorTwo = exponents(denominator1, denominator2); //second denominator
-    double fractionTwo = numeratorTwo / denominatorTwo; //Fraction Two result
-    //These Two Numbers, power the numerator & denominator of fraction by denominator of fraction 2
-    double finalFraction = fractionOne / fractionTwo; //final fraction result
-    printf("The fraction is: %lf", finalFraction);
+double base = numerator1 / denominator1; //base
+double power = numerator2 / denominator2; //power
+double finalFraction = exponents(base, power); //powered fraction
 }
 
 }
 
 /*
 © 2025 Rishi
-Last updated: 22nd July, 2025
+Last updated: 28th July, 2025
 */
 
