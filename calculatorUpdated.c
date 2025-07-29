@@ -14,6 +14,7 @@ int divide(int num1, int num2);
 double exponents(double base, double power);
 double logOf10(int num);
 void fractions(int numerator1, int denominator1, int numerator2, int denominator2, int func);
+void history(char[] hist);
 
 int main() {
 printf("Welcome! This will be a simple calculator.\n");
@@ -219,6 +220,13 @@ double power = numerator2 / denominator2; //power
 double finalFraction = exponents(base, power); //powered fraction
 }
 
+}
+
+void history(char[] hist) {
+printf("Here are the previous calculations");
+for (int i = 0; i < hist.length(); i++) {
+    printf(hist[i]);
+}
 }
 
 /*
