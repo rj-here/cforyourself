@@ -6,7 +6,7 @@ This idea came to me as an AI suggestion.
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#define MAX_LEN 100; //The maximum length
+#define MAX_LEN 100 //The maximum length
 
 char hist[MAX_LEN][MAX_LEN]; // the most amount of expressions
 
@@ -19,7 +19,8 @@ int divide(int num1, int num2);
 double exponents(double base, double power);
 double logOf10(int num);
 void fractions(int numerator1, int denominator1, int numerator2, int denominator2, int func);
-void history(char[] hist);
+void addToHistory(char* expression, char** hist);
+void history(char** hist);
 
 int main() {
 printf("Welcome! This will be a simple calculator.\n");
@@ -42,10 +43,13 @@ if (choice == 1) {//for addition
 printf("Adding away! Provide 2 numbers as input. Keep one space between them.\n");
 
 int num1, num2;
-
 scanf("%d %d", &num1, &num2);
 
 int sum = add(num1, num2);
+
+char expression[MAX_LEN];
+sprintf(expression, "%d + %d = %d", num1, num2, sum); //formatting the expression, to add to history
+addToHistory(expression, hist); //Adding to history
 
 printf("The sum of the 2 numbers will be: %d\n", sum);
 
@@ -56,10 +60,12 @@ else if (choice == 2) {//for subtraction
 printf("Subtracting it'll be. Provide 2 numbers as input (it will be first number - second number). Keep one space between them.\n");
 
 int num1, num2;
-
 scanf("%d %d", &num1, &num2);
 
 int difference = subtract(num1, num2);
+char expression[MAX_LEN];
+sprintf(expression, "%d - %d = %d", num1, num2, difference); //formatting the expression, to add to history
+addToHistory(expression, hist); //Adding to history
 
 printf("The difference in the 2 numbers is: %d\n", difference);
 }
@@ -70,10 +76,12 @@ else if (choice == 3) {//for multiplication
 printf("Multiplying it is. Provide 2 numbers as input. Keep one space between them.\n");
 
 int num1, num2;
-
 scanf("%d %d", &num1, &num2);
 
 int product = multiply(num1, num2);
+char expression[MAX_LEN];
+sprintf(expression, "%d * %d = %d", num1, num2, product); //formatting the expression, to add to history
+addToHistory(expression, hist); //Adding to history
 
 printf("The product of the 2 numbers is %d\n", product);
 }
@@ -82,10 +90,12 @@ else if (choice == 4) {//for division
 printf("Dividing. Provide 2 numbers as input (it will be first number ÷ second number). Keep one space between them.\n");
 
 int num1, num2;
-
 scanf("%d %d", &num1, &num2);
 
 int dividedAnswer = divide(num1, num2);
+char expression[MAX_LEN];
+sprintf(expression, "%d ÷ %d = %d", num1, num2, dividedAnswer); //formatting the expression, to add to history
+addToHistory(expression, hist); //Adding to history
 
 printf("Upon dividing the 2 numbers, the answer is: %d\n", dividedAnswer);
 }
@@ -94,10 +104,12 @@ else if (choice == 5) {//for exponents.
 printf("Exponents here we come! Input 2 numbers, first the base, followed by the power. Keep one space between them.\n");
 
 int base, power;
-
 scanf("%d %d", &base, &power);
 
 int poweredBase = exponents(base, power);
+char expression[MAX_LEN];
+sprintf(expression, "%d ^ %d = %d", base, power, poweredBase); //formatting the expression, to add to history
+addToHistory(expression, hist); //Adding to history
 
 printf("%d to the power of %d is: %d", base, power, poweredBase);
 }
@@ -106,10 +118,14 @@ else if (choice == 6) {
 printf("Log base 10! Which number would you like to get the log base 10 value of?\n");
 
 int num;
-
 scanf("%d", &num);
+double logBase10 = logOf10(num); //get log of base 10 values
 
-printf("%d in log base 10 is: %d\n", num, log(num));
+char expression[MAX_LEN];
+sprintf(expression, "log10(%d) = %f", num, logBase10); //formatting the expression, to add to history
+addToHistory(expression, hist); //Adding to history
+
+printf("%d in log base 10 is: %f\n", num, logBase10);
 }
 
 else if (choice == 7) {//for fractions
@@ -227,15 +243,33 @@ double finalFraction = exponents(base, power); //powered fraction
 
 }
 
-void history(char[] hist) {
+void addToHistory(char* expression, char** hist) {
+    for (int i = 0; i < MAX_LEN; i++) {
+        if (hist[i][0] == '\0') { //finding the first vacant slot
+            for (int j = 0; j < strlen(expression); j++) {
+                hist[i][j] = expression[j]; //adding the expression to history
+            }
+        }
+        else {
+            continue; //just go to the next one
+        }
+    }
+}
+
+void history(char** hist) {
 printf("Here are the previous calculations");
-for (int i = 0; i < hist.length(); i++) {
-    printf(hist[i]);
+for (int i = 0; i < MAX_LEN; i++) {
+    if (hist[i][0] != '\0') { //string not empty
+        printf("%s\n", hist[i]);
+    }
+    else {
+        break; //if empty, stop
+    }
 }
 }
 
 /*
 © 2025 Rishi
-Last updated: 29th July, 2025
+Last updated: 4th August, 2025
 */
 
