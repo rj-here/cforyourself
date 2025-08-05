@@ -19,8 +19,8 @@ int divide(int num1, int num2);
 double exponents(double base, double power);
 double logOf10(int num);
 void fractions(int numerator1, int denominator1, int numerator2, int denominator2, int func);
-void addToHistory(char* expression, char** hist);
-void history(char** hist);
+void addToHistory(char* expression, char[][MAX_LEN]);
+void history(char[][MAX_LEN]);
 
 int main() {
 printf("Welcome! This will be a simple calculator.\n");
@@ -243,20 +243,22 @@ double finalFraction = exponents(base, power); //powered fraction
 
 }
 
-void addToHistory(char* expression, char** hist) {
+void addToHistory(char* expression, char[][MAX_LEN]) {
     for (int i = 0; i < MAX_LEN; i++) {
         if (hist[i][0] == '\0') { //finding the first vacant slot
             for (int j = 0; j < strlen(expression); j++) {
-                hist[i][j] = expression[j]; //adding the expression to history
+              strcpy(hist[i], expression); //bringing in the expression to the history
+              break; //this stops subseqeunt additions of the same expression
             }
         }
         else {
             continue; //just go to the next one
         }
     }
+    history(hist); //show history after adding the expression
 }
 
-void history(char** hist) {
+void history(char[][MAX_LEN]) {
 printf("Here are the previous calculations");
 for (int i = 0; i < MAX_LEN; i++) {
     if (hist[i][0] != '\0') { //string not empty
@@ -270,6 +272,6 @@ for (int i = 0; i < MAX_LEN; i++) {
 
 /*
 © 2025 Rishi
-Last updated: 4th August, 2025
+Last updated: 5th August, 2025
 */
 
