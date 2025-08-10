@@ -9,7 +9,7 @@ This idea came to me as an AI suggestion.
 #define MAX_LEN 100 //The maximum length
 
 char hist[MAX_LEN][MAX_LEN]; // the most amount of expressions
-
+char decision[3] = "Yes"; //storing the user's decision to continue using the calculator or not (Yes or No)
 int histIndex = 0; // declaring the # of expressions done so far
 //Declaring the methods, so they can be used later!
 int add(int num1, int num2);
@@ -35,6 +35,7 @@ printf("4. Division\n");
 printf("5. Exponents\n");
 printf("6. Log [Base 10]\n");
 printf("7. Fractions\n");
+while (strcmp(decision, "Yes") == 0 || strcmp(decision, "yes") == 0 || strcmp(decision, "YES") == 0) {//while the user wants to continue using the calculator
 
 int choice;
 scanf("%d", &choice); //scanf takes user input.
@@ -47,11 +48,11 @@ scanf("%d %d", &num1, &num2);
 
 int sum = add(num1, num2);
 
+printf("The sum of the 2 numbers will be: %d\n", sum);
+
 char expression[MAX_LEN];
 sprintf(expression, "%d + %d = %d", num1, num2, sum); //formatting the expression, to add to history
 addToHistory(expression, hist); //Adding to history
-
-printf("The sum of the 2 numbers will be: %d\n", sum);
 
 }
 
@@ -146,8 +147,10 @@ else {
     printf("Sorry! Need a valid function!\n Try again.\n");
 }
 }
+printf("Do you desire to do another caluclation? (Either Type 'Yes' or 'No')\n");
+scanf("%s", decision); //taking the user's decision to continue using the calculator or not
 }
-
+}
 /*
 The coming functions will perform: addition, subtraction, mutliplication, division [the essentials]
 We will take 2 numbers in each case, then return the according result.
@@ -176,9 +179,6 @@ if (num2 == 0) {
 int answer = num1 / num2; //dividing
 return answer;
 }
-/*
-Extras
-*/
 double exponents(double base, double power) {
 return pow(base, power);
 }
@@ -216,7 +216,7 @@ if (denominator1 == numerator2) { //if denominator of first is numerator of seco
 else if (denominator2 == numerator1) { //if denominator of second is numerator of first
     numerator = numerator2; //final numerator
     denominator = denominator1; //final denominator
-    printf("The fraction is $d / %d", numerator, denominator);
+    printf("The fraction is %d / %d", numerator, denominator);
 }
 else {
     numerator = numerator1 * numerator2; //final numerator
@@ -246,20 +246,17 @@ double finalFraction = exponents(base, power); //powered fraction
 void addToHistory(char* expression, char[][MAX_LEN]) {
     for (int i = 0; i < MAX_LEN; i++) {
         if (hist[i][0] == '\0') { //finding the first vacant slot
-            for (int j = 0; j < strlen(expression); j++) {
               strcpy(hist[i], expression); //bringing in the expression to the history
               break; //this stops subseqeunt additions of the same expression
-            }
         }
         else {
             continue; //just go to the next one
         }
     }
-    history(hist); //show history after adding the expression
 }
 
 void history(char[][MAX_LEN]) {
-printf("Here are the previous calculations");
+printf("Here are the previous calculations: ");
 for (int i = 0; i < MAX_LEN; i++) {
     if (hist[i][0] != '\0') { //string not empty
         printf("%s\n", hist[i]);
