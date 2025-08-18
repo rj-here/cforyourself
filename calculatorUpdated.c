@@ -140,7 +140,7 @@ printf("Which function would you like to perform on the fractions?\n1. Add,\n2. 
 
 int func;
 scanf("%d", &func);
-if ((func >= 1) && (func <=4)) {
+if ((func >= 1) && (func <=5)) {
     fractions(numerator1, denominator1, numerator2, denominator2, func);
 }
 else {
@@ -206,19 +206,27 @@ int numerator, denominator; //declaring final
 if (func == 1) { //add
 if (denominator1 == denominator2) { //if same denominator
     numerator = numerator1 + numerator2;
-    printf("The fraction is: %d / %d\n", numerator, denominator1);
+    denominator = denominator1; //final denominator
+    printf("The fraction is: %d / %d\n", numerator, denominator);
+    
 }
 else {//for different denominators
     numerator = (numerator1 * denominator2) + (numerator2 * denominator1);
     denominator = denominator1 * denominator2;
     printf("The fraction is: %d / %d\n", numerator, denominator);
 }
+    char expression[MAX_LEN];
+    sprintf(expression, "(%d / %d) + (%d / %d) = (%d / %d)", numerator1, denominator1, numerator2, denominator2, numerator, denominator); //formatting the expression, to add to history
+    addToHistory(expression, hist); //Adding to history
 }
 
 else if (func == 2) { //subtract
     numerator = numerator1 * denominator2 - numerator2 * denominator1; //final numerator
     denominator = denominator1 * denominator2; //final denominator
     printf("The fraction is %d / %d\n", numerator, denominator);
+    char expression[MAX_LEN];
+    sprintf(expression, "(%d / %d) - (%d / %d) = (%d / %d)", numerator1, denominator1, numerator2, denominator2, numerator, denominator); //formatting the expression, to add to history
+    addToHistory(expression, hist); //Adding to history
 }
 
 else if (func == 3) { //multiply
@@ -226,6 +234,7 @@ if (denominator1 == numerator2) { //if denominator of first is numerator of seco
     numerator = numerator1; //final numerator
     denominator = denominator2; //final denominator
     printf("The fraction is %d / %d\n", numerator, denominator);
+    
 }
 else if (denominator2 == numerator1) { //if denominator of second is numerator of first
     numerator = numerator2; //final numerator
@@ -237,6 +246,9 @@ else {
     denominator = denominator1 * denominator2; //final denominator
     printf("The fraction is %d / %d\n", numerator, denominator);
 }
+    char expression[MAX_LEN];
+    sprintf(expression, "(%d / %d) * (%d / %d) = (%d / %d)", numerator1, denominator1, numerator2, denominator2, numerator, denominator); //formatting the expression, to add to history
+    addToHistory(expression, hist); //Adding to history
 }
 
 else if (func == 4) { //divide; dividing a fraction by another is multiplying by the reciprocal
@@ -246,13 +258,28 @@ else if (func == 4) { //divide; dividing a fraction by another is multiplying by
         printf("Error: Division by zero is not allowed.\n");
         return;
     }
-    printf("The fraction is %d / %d", numerator, denominator);
+    printf("The fraction is %d / %d\n", numerator, denominator);
+    char expression[MAX_LEN];
+    sprintf(expression, "(%d / %d) ÷ (%d / %d) = (%d / %d)", numerator1, denominator1, numerator2, denominator2, numerator, denominator); //formatting the expression, to add to history
+    addToHistory(expression, hist); //Adding to history
 }
 
 else if (func == 5) { //exponents
-double base = numerator1 / denominator1; //base
-double power = numerator2 / denominator2; //power
-double finalFraction = exponents(base, power); //powered fraction
+    double base = (double) (numerator1 / denominator1); //final base
+    double power = (double) (numerator2 / denominator2); //final power
+    //All these values are being done, to get an expression of the form (a/b) ^ (c/d), to print and store.
+    int poweredNumeratorNumerator = exponents(numerator1, numerator2); //raising the numerator of fraction 1 to power of numerator of fraction 2
+    int poweredNumeratorDenominator = exponents(numerator1, denominator2); //raising the numerator of fraction 1 to power of denominator of fraction 2
+    int poweredDenominatorNumerator = exponents(denominator1, numerator2); //raising the denominator of fraction 1 to power of numerator of fraction 2
+    int poweredDenominatorDenominator = exponents(denominator1, denominator2); //raising the denominator of fraction 1 to power of denominator of fraction 2
+    //Now, getting the "simplified" fraction, to print, and store.
+    int finalNumerator = poweredNumeratorNumerator * poweredDenominatorDenominator; //final numerator
+    int finalDenominator = poweredDenominatorNumerator * poweredNumeratorDenominator; //final denominator
+    double poweredFraction = exponents(base, power); //Extracting the value as is. This is the final value of the fraction raised to the power.
+    printf("The fraction is: %.2f OR %d / %d\n", poweredFraction, finalNumerator, finalDenominator); //Printing the fraction
+    char expression[MAX_LEN];
+    sprintf(expression, "(%d / %d) ^ (%d / %d) = ((%d / %d) / (%d / %d)) = %d / %d OR %.2f", numerator1, denominator1, numerator2, denominator2, poweredNumeratorNumerator, poweredNumeratorDenominator, poweredDenominatorNumerator, poweredDenominatorDenominator, finalNumerator, finalNumerator, poweredFraction); //formatting the expression, to add to history
+    addToHistory(expression, hist); //Adding to history
 }
 
 }
@@ -283,6 +310,6 @@ for (int i = 0; i < MAX_LEN; i++) {
 
 /*
 © 2025 Rishi
-Last updated: 11th August, 2025
+Last updated: 18th August, 2025
 */
 
