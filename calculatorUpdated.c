@@ -268,17 +268,13 @@ else if (func == 5) { //exponents
     double base = (double) (numerator1 / denominator1); //final base
     double power = (double) (numerator2 / denominator2); //final power
     //All these values are being done, to get an expression of the form (a/b) ^ (c/d), to print and store.
-    int poweredNumeratorNumerator = exponents(numerator1, numerator2); //raising the numerator of fraction 1 to power of numerator of fraction 2
-    int poweredNumeratorDenominator = exponents(numerator1, denominator2); //raising the numerator of fraction 1 to power of denominator of fraction 2
-    int poweredDenominatorNumerator = exponents(denominator1, numerator2); //raising the denominator of fraction 1 to power of numerator of fraction 2
-    int poweredDenominatorDenominator = exponents(denominator1, denominator2); //raising the denominator of fraction 1 to power of denominator of fraction 2
-    //Now, getting the "simplified" fraction, to print, and store.
-    int finalNumerator = poweredNumeratorNumerator * poweredDenominatorDenominator; //final numerator
-    int finalDenominator = poweredDenominatorNumerator * poweredNumeratorDenominator; //final denominator
+
     double poweredFraction = exponents(base, power); //Extracting the value as is. This is the final value of the fraction raised to the power.
-    printf("The fraction is: %.2f OR %d / %d\n", poweredFraction, finalNumerator, finalDenominator); //Printing the fraction
+    //printf("The fraction is: %.2f OR %d / %d\n", poweredFraction, finalNumerator, finalDenominator); //Printing the fraction
+    printf("The fraction is: %.5f\n", poweredFraction); //Printing the fraction
     char expression[MAX_LEN];
-    sprintf(expression, "(%d / %d) ^ (%d / %d) = ((%d / %d) / (%d / %d)) = %d / %d OR %.2f", numerator1, denominator1, numerator2, denominator2, poweredNumeratorNumerator, poweredNumeratorDenominator, poweredDenominatorNumerator, poweredDenominatorDenominator, finalNumerator, finalNumerator, poweredFraction); //formatting the expression, to add to history
+    //sprintf(expression, "(%d / %d) ^ (%d / %d) = ((%d / %d) / (%d / %d)) = %d / %d OR %.2f", numerator1, denominator1, numerator2, denominator2, poweredNumeratorNumerator, poweredNumeratorDenominator, poweredDenominatorNumerator, poweredDenominatorDenominator, finalNumerator, finalNumerator, poweredFraction); //formatting the expression, to add to history
+    sprintf(expression, "(%d / %d) ^ (%d / %d) = %.5f", numerator1, denominator1, numerator2, denominator2, poweredFraction); //formatting the expression, to add to history
     addToHistory(expression, hist); //Adding to history
 }
 
